@@ -1,0 +1,6 @@
+read
+/*
+foo
+bar */
+*
+five 5
