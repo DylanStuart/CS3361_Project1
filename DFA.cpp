@@ -19,7 +19,7 @@ int main() {
 	ifstream myfile;
 	
 	myfile.open("DFA.txt");
-	myfile2.open("example.txt");
+	myfile2.open("DFA_Output.txt");
 	
 	if (myfile.is_open())
 	{
@@ -79,7 +79,8 @@ int main() {
 			k++;
 		}
 
-		
+		// was having issues with letter and diget i kept getting errors so erased that part for now. 
+		// I also think something is wrong with the 1st if statment for "div"
 
 		
 		
