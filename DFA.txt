@@ -3,4 +3,4 @@ read
 foo
 bar */
 *
-five 5
+five  5
