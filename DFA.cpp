@@ -40,7 +40,7 @@ int main() {
 	for (int j = 0; j < 20; j++) {
 		
 		if (DFA[j] == '/') {
-			est:
+			
 			if (DFA[j + 1] == '*') {
 				while (DFA[j] != '*' || DFA[j + 1] != '/') {
 					j++;
