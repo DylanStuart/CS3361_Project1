@@ -6,7 +6,7 @@
 #include <ctype.h>
 // was trying to add the extra options to isdigit and was getting errors.
 //its working for the exact data set that was provided in the project, however i'm pretty sure it will break if you change the DFA.txt file
-//will try and fine tune it.
+//will try and file tune it.
 // wasn't sure how to add spaces/newlines
 //not sure if we should add what states is on?
 
@@ -14,7 +14,7 @@
 
 using namespace std;
 int main() {
-	char DFA[20];
+	char DFA[27];
 	
 	string DFA_Result[30];
 	
@@ -30,21 +30,31 @@ int main() {
 	
 	if (myfile.is_open())
 	{
-		for(i=0; i<50; i++){
+		
 		
 			
-			myfile >> DFA[i];
+		while (myfile.get(DFA[i])) {
+			i++;
+			}
 		
 		
-		}
+		
 		myfile.close();
 	}
 
-	else myfile2 << "Unable to open file"; {
+	
+
+
+	
+
+
+
+
+	 else myfile2 << "Unable to open file"; {
 
 	}
 
-	for (int j = 0; j < 20; j++) {
+	for (int j = 0; j < 27; j++) {
 		
 		if (DFA[j] == '/') {
 			
@@ -57,6 +67,12 @@ int main() {
 			
 				
 				
+			}
+			else if (DFA[j + 1] == '/') {
+				while (DFA[j] != ' ') {
+					j++;
+				}
+
 			}
 			else {
 				DFA_Result[k] = "Div";
@@ -115,6 +131,7 @@ int main() {
 
 			
 		}
+		
 
 
 
@@ -130,7 +147,7 @@ int main() {
 			myfile2 << ", ";
 		}
 	}
-	myfile2 << " )";
+	myfile2 << " )"; 
 
 	
 
