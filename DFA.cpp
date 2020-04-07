@@ -6,7 +6,7 @@
 #include <ctype.h>
 // was trying to add the extra options to isdigit and was getting errors.
 //its working for the exact data set that was provided in the project, however i'm pretty sure it will break if you change the DFA.txt file
-//will try and file tune it.
+//will try and fine tune it.
 // wasn't sure how to add spaces/newlines
 //not sure if we should add what states is on?
 
