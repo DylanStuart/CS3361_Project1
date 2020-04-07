@@ -14,12 +14,13 @@
 
 using namespace std;
 int main() {
-	char DFA[27];
+	char DFA[60];
 	
 	string DFA_Result[30];
 	
 	int i = 0;
 	int k = 0;
+	int State = 0;
 	 
 	
 	ofstream myfile2;
@@ -54,7 +55,7 @@ int main() {
 
 	}
 
-	for (int j = 0; j < 27; j++) {
+	for (int j = 0; j < i; j++) {
 		
 		if (DFA[j] == '/') {
 			
@@ -103,14 +104,18 @@ int main() {
 			DFA_Result[k] = "Times";
 			k++;
 		}
-		if (isdigit(DFA[j])) {
+		if (j < i  && isdigit(DFA[j])) {
+			while (j < i && isdigit(DFA[j]) ) {
+				j++;
+				
+			}
 		
 			DFA_Result[k] = "Digit";
 			k++;
 		}
 
-		if (isalpha(DFA[j])) {
-			while (isalpha(DFA[j + 1])) {
+		if (j < i && isalpha(DFA[j])) {
+			while (j < i && isalpha(DFA[j+1])) {
 				j++;
 			}
 			if (DFA[j - 3] == 'r' &&  DFA[j - 2] == 'e' && DFA[j - 1] == 'a' && DFA[j] == 'd') {
@@ -128,8 +133,12 @@ int main() {
 
 			}
 
-
+			 
 			
+		}
+		if (DFA[j] == ':' && DFA[j + 1] == '=') {
+			DFA_Result[k] = "Assign";
+			k++;
 		}
 		
 
