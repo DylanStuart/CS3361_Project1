@@ -4,19 +4,15 @@
 #include <string>
 #include <sstream>
 #include <ctype.h>
-// was trying to add the extra options to isdigit and was getting errors.
-//its working for the exact data set that was provided in the project, however i'm pretty sure it will break if you change the DFA.txt file
-//will try and file tune it.
-// wasn't sure how to add spaces/newlines
-//not sure if we should add what states is on?
+
 
 
 
 using namespace std;
 int main() {
-	char DFA[60];
+	char DFA[100];
 	
-	string DFA_Result[30];
+	string DFA_Result[100];
 	
 	int i = 0;
 	int k = 0;
@@ -56,7 +52,10 @@ int main() {
 	}
 
 	for (int j = 0; j < i; j++) {
-		
+
+		if (DFA[j] == ' ') {
+			State = 1;
+		}
 		if (DFA[j] == '/') {
 			
 			if (DFA[j + 1] == '*') {
@@ -70,13 +69,14 @@ int main() {
 				
 			}
 			else if (DFA[j + 1] == '/') {
-				while (DFA[j] != ' ') {
+				while (DFA[j] != '\n') {
 					j++;
 				}
 
 			}
 			else {
 				DFA_Result[k] = "Div";
+
 				k++;
 			}
 
@@ -104,13 +104,13 @@ int main() {
 			DFA_Result[k] = "Times";
 			k++;
 		}
-		if (j < i  && isdigit(DFA[j])) {
-			while (j < i && isdigit(DFA[j]) ) {
+		if ((DFA[j]== '.' || isdigit(DFA[j]) && j <= i )) {
+			while ((DFA[j+1] == '.' || isdigit(DFA[j+1]) && j < i) ) {
 				j++;
 				
 			}
 		
-			DFA_Result[k] = "Digit";
+			DFA_Result[k] = "number";
 			k++;
 		}
 
@@ -128,7 +128,7 @@ int main() {
 			}
 
 			else {
-				DFA_Result[k] = "Letter";
+				DFA_Result[k] = "Id";
 				k++;
 
 			}

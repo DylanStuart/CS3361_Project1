@@ -1,1 +1,1 @@
-(read, Times, Letter, Digit )
+(read, Times, Id, number )
