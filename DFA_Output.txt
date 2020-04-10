@@ -1,1 +1,1 @@
-(read, Times, Id, number )
+(Div, number, Id, number, Id, Times, Div, Id, write, Id, Id )

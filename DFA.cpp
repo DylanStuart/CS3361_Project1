@@ -133,8 +133,12 @@ int main() {
 		}
 
 		if (j < i && isalpha(DFA[j])) {
-			while (j < i && isalpha(DFA[j + 1])) {
+
+			while (isdigit(DFA[j+1]) || isalpha(DFA[j + 1])) {
 				j++;
+				if (j >= i) {
+					break;
+				}
 			}
 			if (DFA[j - 3] == 'r' &&  DFA[j - 2] == 'e' && DFA[j - 1] == 'a' && DFA[j] == 'd') {
 				DFA_Result[k] = "read";
