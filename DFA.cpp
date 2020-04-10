@@ -17,6 +17,7 @@ int main() {
 	int i = 0;
 	int k = 0;
 	int State = 0;
+	string name;
 	bool error = false;
 	bool error2 = false;
 
@@ -24,7 +25,10 @@ int main() {
 	ofstream myfile2;
 	ifstream myfile;
 
-	myfile.open("DFA.txt");
+	cout << "What is the name of the file you wish to open?" << endl;
+	cin >> name;
+
+	myfile.open(name);
 	myfile2.open("DFA_Output.txt");
 
 	if (myfile.is_open())
@@ -47,7 +51,7 @@ int main() {
 
 
 
-
+	
 
 	else myfile2 << "Unable to open file"; {
 
@@ -160,7 +164,7 @@ int main() {
 		}
 
 		if (j < i) {
-			if (DFA[j] != '.' && !isdigit(DFA[j]) && !isalpha(DFA[j]) && DFA[j] != '*' && DFA[j] != '/' && DFA[j] != '-' && DFA[j] != '+' && DFA[j] != '(' && DFA[j] != ')' && DFA[j] != ':' && DFA[j] != '=' && DFA[j] != ' ' && DFA[j] != '\n' && DFA[j] != '\t') {
+			if (DFA[j] != '.' && !isdigit(DFA[j]) && !isalpha(DFA[j]) && DFA[j] != '*' && DFA[j] != '/' && DFA[j] != '-' && DFA[j] != '+' && DFA[j] != '(' && DFA[j] != ')' && DFA[j] != ':' && DFA[j] != '=' && DFA[j] != ' ' && DFA[j] != '\n' && DFA[j] != '\t' && DFA[j] != '\r') {
 				myfile2 << "ERROR Token in text file not allowed." << endl;
 				error2 = true;
 				break;
