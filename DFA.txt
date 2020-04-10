@@ -1,6 +1,8 @@
-read
-/*
-foo
-bar */
-*
-five 5
+:  =/
+	5.56.A6BV.D */
+
+newline // number*123 */
+
+	write Read reAd
+
+//something/* // 160:=ACX */
