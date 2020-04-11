@@ -25,6 +25,8 @@ int main() {
 	ofstream myfile2;
 	ifstream myfile;
 
+
+	//asking user for file name
 	cout << "What is the name of the file you wish to open?" << endl;
 	cin >> name;
 
@@ -35,7 +37,7 @@ int main() {
 	{
 
 
-
+		//scanning information from file into the DFA[i]
 		while (myfile.get(DFA[i])) {
 			i++;
 		}
@@ -57,16 +59,21 @@ int main() {
 
 	}
 
-	for (int j = 0; j < i; j++) {
 
-		if (DFA[j] == ' ') {
+	//loop for the DFA
+	for (int j = 0; j < i; j++ ) {
+
+		if (DFA[j] == ' ' || DFA[j] == '\t' || DFA[j] == '\n') {
 			State = 1;
 		}
+
+		//if there is a / then we peak at the next member of the array, if its a * or an / then we ignore everything untill the end of the comment
 		if (DFA[j] == '/') {
 
 			if (DFA[j + 1] == '*') {
 				while (DFA[j] != '*' || DFA[j + 1] != '/') {
 					j++;
+					State = 4;
 
 				}
 				j++;
@@ -74,44 +81,59 @@ int main() {
 
 
 			}
-			else if (DFA[j + 1] == '/') {
+			 else if (DFA[j + 1] == '/') {
 				while (DFA[j] != '\n') {
 					j++;
+					State = 3;
 				}
 
 			}
 			else {
 				DFA_Result[k] = "Div";
+				State = 2;
 
 				k++;
 			}
 
 		}
+		//checks for ( 
 		if (DFA[j] == '(') {
+			State = 6;
 			DFA_Result[k] = "Lparen";
 			k++;
 
 		}
+		//checks for )
 		if (DFA[j] == ')') {
+			State = 7;
 			DFA_Result[k] = "Rparen";
 			k++;
 		}
+		// checks for +
 		if (DFA[j] == '+') {
+			State = 8;
 			DFA_Result[k] = "Plus";
 			k++;
 		}
 
+		//checks for -
 		if (DFA[j] == '-') {
+			State = 9;
 			DFA_Result[k] = "Minus";
 			k++;
 		}
 
+		//checks for *
 		if (DFA[j] == '*') {
+			State = 10;
 			DFA_Result[k] = "Times";
 			k++;
 		}
 		
+		// checks for any number and also '.' ex 4.3, 3.1, .77
+		// will also peak at the next item in the array untill the next value is not a number
 		if ( isdigit(DFA[j]) || DFA[j] == '.') {
+			
 
 			if (j < i) {
 				while (DFA[j] == '.' || isdigit(DFA[j] ) ) {
@@ -126,15 +148,18 @@ int main() {
 			}
 			
 			DFA_Result[k] = "number";
+			State = 14;
 			k++;
 		}
 		if (DFA[j] == '.') {
-			
+			State = 13;
 		}
 
+		// checks for any letter and peaks to see if the next value is a letter or a number and stops when there isnt one
 		if (j < i && isalpha(DFA[j])) {
 
 			while (isdigit(DFA[j+1]) || isalpha(DFA[j + 1])) {
+				State = 16;
 				j++;
 				if (j >= i) {
 					break;
@@ -158,7 +183,9 @@ int main() {
 
 
 		}
+		//checks for : and peaks to see if the next value is =
 		if (DFA[j] == ':' && DFA[j + 1] == '=') {
+			State = 11;
 			DFA_Result[k] = "Assign";
 			k++;
 
@@ -167,6 +194,9 @@ int main() {
 
 		}
 
+
+		//checks to see if other tokens are in the file outside of the ones above. 
+		//if there is one then it will return an error msg
 		if (j < i) {
 			if (DFA[j] != '.' && !isdigit(DFA[j]) && !isalpha(DFA[j]) && DFA[j] != '*' && DFA[j] != '/' && DFA[j] != '-' && DFA[j] != '+' && DFA[j] != '(' && DFA[j] != ')' && DFA[j] != ':' && DFA[j] != '=' && DFA[j] != ' ' && DFA[j] != '\n' && DFA[j] != '\t' && DFA[j] != '\r') {
 				myfile2 << "ERROR Token in text file not allowed." << endl;
@@ -193,7 +223,7 @@ int main() {
 
 
 		myfile2 << "(";
-
+		// prints the items 
 		for (int h = 0; h < k; h++) {
 
 			myfile2 << DFA_Result[h];
@@ -202,6 +232,7 @@ int main() {
 			}
 		}
 		myfile2 << " )";
+		myfile2 << endl << "the final state was " << State << endl;
 	}
 	
 

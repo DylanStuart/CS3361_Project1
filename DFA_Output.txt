@@ -1,1 +1,2 @@
-(Div, number, Id, number, Id, Times, Div, Id, write, Id, Id )
+(read, Times, Id, number )
+the final state was 14
