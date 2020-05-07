@@ -283,17 +283,18 @@ int main() {
 				myfile2 << "\t \t \t \t <Lparen>" << endl;
 				myfile2 << "\t \t \t \t \t " << hold[j] << endl;
 				myfile2 << "\t \t \t \t </Lparen>" << endl;
-				j++;
-				myfile2 << "\t \t \t \t <Number>" << endl;
-				myfile2 << "\t \t \t \t \t " << hold[j] << endl;;
-				myfile2 << "\t \t \t \t </Number>" << endl;
-				j++;
-				myfile2 << "\t \t \t \t <rparen>" << endl;
-				myfile2 << "\t \t \t \t \t " << hold[j] << endl;
-				myfile2 << "\t \t \t \t </rparen>" << endl;
-
-
 			}
+				
+
+				if (DFA_Result[j] == "Rparen") {
+					myfile2 << "\t \t \t \t <rparen>" << endl;
+					myfile2 << "\t \t \t \t \t " << hold[j] << endl;
+					myfile2 << "\t \t \t \t </rparen>" << endl;
+				}
+
+
+
+			
 			if (DFA_Result[j] == "Id" && DFA_Result[j + 1] != "Assign") {
 				myfile2 << "\t \t \t \t <id>" << endl;
 				myfile2 << "\t \t \t \t \t " << hold[j] << endl;
@@ -338,10 +339,11 @@ int main() {
 
 		return 0;
 
-	}
-
-
 	
+	}
+	
+
+
 
 
 
